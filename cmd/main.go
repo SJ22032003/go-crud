@@ -1,6 +1,9 @@
 package main
 
 import (
+	"os"
+
+	"github.com/SJ22032003/go-crud/db"
 	"github.com/SJ22032003/go-crud/routes"
 	gin "github.com/gin-gonic/gin"
 )
@@ -8,6 +11,8 @@ import (
 func main() {
 
 	server := gin.Default();
+
+	db.ConnectToDb();
 
 	v := server.Group("/");
 
@@ -23,5 +28,6 @@ func main() {
 	routes.TodoRoutes(v);
 
 	// SERVER LISTENING
-	server.Run(":3000")
+	port := os.Getenv("PORT")
+	server.Run(":" + port)
 }
