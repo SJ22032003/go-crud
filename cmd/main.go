@@ -1,13 +1,27 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/SJ22032003/go-crud/routes"
+	gin "github.com/gin-gonic/gin"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
+
+	server := gin.Default();
+
+	v := server.Group("/");
+
+	// TEST SERVER
+	server.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
-	r.Run(":3000")
+
+
+	// ROUTES
+	routes.TodoRoutes(v);
+
+	// SERVER LISTENING
+	server.Run(":3000")
 }

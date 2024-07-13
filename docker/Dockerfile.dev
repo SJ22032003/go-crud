@@ -4,8 +4,10 @@ FROM golang:1.22.5-alpine
 
 WORKDIR /app
 
+# INSTALL GIT TO SYNC TO REMOTE REPO INSIDE CONTAINER
 RUN apk add --no-cache git
 
+# INSTALL AIR FOR AUTO RELOAD | DO air init TO CONFIGURE
 RUN go install github.com/air-verse/air@latest
 
 COPY go.mod go.sum ./
